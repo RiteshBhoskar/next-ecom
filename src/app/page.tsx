@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Link from "next/link";
 
 import { LatestPost } from "~/app/_components/post";
@@ -67,3 +68,14 @@ export default async function Home() {
     </HydrateClient>
   );
 }
+=======
+import HeroSection from "~/components/Hero";
+
+export default async function Home() {
+  return (
+    <main>
+      <HeroSection />
+    </main>
+  )
+}
+>>>>>>> 44b7e5e (working on auth)

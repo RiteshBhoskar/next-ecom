@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+=======
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap");
+
+>>>>>>> 44b7e5e (working on auth)
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -65,4 +71,9 @@
   body {
     @apply bg-background text-foreground;
   }
+=======
+html {
+  scroll-behavior: smooth;
+  font-family: "Satoshi", sans-serif;
+>>>>>>> 44b7e5e (working on auth)
 }
