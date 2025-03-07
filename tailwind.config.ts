@@ -1,25 +1,12 @@
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
-<<<<<<< HEAD
-export default {
-=======
 const config: Config = {
->>>>>>> 44b7e5e (working on auth)
     darkMode: ["class"],
     content: ["./src/**/*.tsx"],
   theme: {
   	extend: {
-<<<<<<< HEAD
-  		fontFamily: {
-  			sans: [
-  				'var(--font-geist-sans)',
-                    ...fontFamily.sans
-                ]
-=======
   		fontFamily: {	
 			satoshi: ["Satoshi", "sans-serif"]
->>>>>>> 44b7e5e (working on auth)
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -70,10 +57,6 @@ const config: Config = {
   		}
   	}
   },
-<<<<<<< HEAD
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
-=======
   fontWeight: {
 		light: '300',
 		regular: '400',
@@ -85,4 +68,3 @@ const config: Config = {
 
 
 export default config;
->>>>>>> 44b7e5e (working on auth)
