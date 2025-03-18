@@ -3,10 +3,15 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  if(session?.user){
+    return redirect("/home")
+  }
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -39,30 +44,9 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Authenticated User Buttons */}
-        {session ? (
-          <div className="flex gap-4">
-            <Link href="/cart" className="hover:text-blue-500">
-              Cart
-            </Link>
-            <Link href="/profile" className="hover:text-blue-500">
-              Profile
-            </Link>
-            <button onClick={() => signOut()} className="hover:text-red-500">
-              Logout
-            </button>
-          </div>
-        ) : (
-          /* Not Logged In */
-          <div className="flex gap-4">
-            <Link href="/login" className="hover:text-blue-500">
-              Login
-            </Link>
-            <Link href="/signup" className="hover:text-blue-500">
-              Sign Up
-            </Link>
-          </div>
-        )}
+        <button onClick={() => scrollToSection("get-started")} className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
+            Get Started
+        </button>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -77,18 +61,6 @@ const Navbar = () => {
           <button onClick={() => scrollToSection("shop")}>Shop</button>
           <button onClick={() => scrollToSection("about")}>About</button>
           <button onClick={() => scrollToSection("contact")}>Contact</button>
-          {session ? (
-            <>
-              <Link href="/cart">Cart</Link>
-              <Link href="/profile">Profile</Link>
-              <button onClick={() => signOut()}>Logout</button>
-            </>
-          ) : (
-            <>
-              <Link href="/login">Login</Link>
-              <Link href="/signup">Sign Up</Link>
-            </>
-          )}
         </div>
       )}
     </nav>

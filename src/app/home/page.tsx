@@ -1,9 +1,27 @@
+'use client'
+import { useSession } from "next-auth/react";
+import { useState } from "react"
+import { api } from "~/trpc/react"
 
 
 export default function Home(){
+
+    const [name , setName ] = useState("");
+    const { data : session } = useSession();
+    const { data , refetch } = api.user.welcome.useQuery();
+
     return (
         <div>
-            home page
+            <div>
+                enter your name
+            </div>
+            <input onChange={(e) => setName(e.target.value)} type="text" placeholder="your-name" value={name} />
+            <button onClick={() => refetch()}>submit</button>
+            { data && (
+                <div>
+                    {data.welcome}
+                </div>
+            )}
         </div>
     )
 }
