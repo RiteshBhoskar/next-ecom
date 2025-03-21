@@ -41,4 +41,8 @@ export const authConfig = {
       },
     }),
   },
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/signin"
+  }
 } satisfies NextAuthConfig;

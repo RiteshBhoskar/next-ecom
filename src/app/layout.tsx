@@ -5,7 +5,6 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./provider";
-import Navbar from "~/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Tech Wave",

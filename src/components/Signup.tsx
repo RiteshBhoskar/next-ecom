@@ -15,13 +15,13 @@ export default function Signup() {
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-12 lg:px-16">
         {!showEmailForm ? (
           <>
-            <h1 className="text-4xl font-bold mb-3">Create your account</h1>
+            <h1 className="text-4xl font-medium mb-3">Create your account</h1>
             <p className="text-gray-400 mb-10">Join thousands of shoppers and get access to exclusive deals.</p>
 
             <div className="space-y-4 max-w-md">
               <button className="w-full bg-white text-black rounded-full py-3 flex items-center justify-center gap-2"
               onClick={async () => {
-                await signIn("google");
+                await signIn("google" , { callbackUrl: "/home"});
               }}
               >
                 <img src="/google-icon.svg" alt="Google" width={20} height={20} className="w-5 h-5" />
@@ -58,7 +58,7 @@ export default function Signup() {
               Back
             </button>
 
-            <h1 className="text-3xl font-bold mb-6">Create your account</h1>
+            <h1 className="text-3xl font-medium mb-6">Create your account</h1>
 
             <form className="space-y-4">
               <div className="space-y-2">
