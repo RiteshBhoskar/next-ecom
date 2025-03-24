@@ -1,17 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
-import { redirect } from "next/navigation";
 
 const Navbar = () => {
-  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  if(session?.user){
-    return redirect("/home")
-  }
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -44,9 +37,9 @@ const Navbar = () => {
           </button>
         </div>
 
-        <button onClick={() => scrollToSection("get-started")} className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
+        <Link href="/signin" className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
             Get Started
-        </button>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>

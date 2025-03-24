@@ -1,19 +1,15 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft, Package, Truck, CreditCard } from "lucide-react"
-import { useState } from "react"
+import { Package, Truck, CreditCard } from "lucide-react"
 import { signIn } from "next-auth/react"
 
 export default function Signup() {
-  const [showEmailForm, setShowEmailForm] = useState(false)
 
   return (
     <div className="min-h-screen bg-black text-white flex">
       {/* Left Column - Signup Form */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 py-12 lg:px-16">
-        {!showEmailForm ? (
           <>
             <h1 className="text-4xl font-medium mb-3">Create your account</h1>
             <p className="text-gray-400 mb-10">Join thousands of shoppers and get access to exclusive deals.</p>
@@ -21,7 +17,7 @@ export default function Signup() {
             <div className="space-y-4 max-w-md">
               <button className="w-full bg-white text-black rounded-full py-3 flex items-center justify-center gap-2"
               onClick={async () => {
-                await signIn("google" , { callbackUrl: "/home"});
+                await signIn("google" , { redirectTo: "/home"});
               }}
               >
                 <img src="/google-icon.svg" alt="Google" width={20} height={20} className="w-5 h-5" />
@@ -30,101 +26,11 @@ export default function Signup() {
 
               <div className="flex items-center gap-3">
                 <div className="h-px bg-gray-800 flex-grow"></div>
-                <span className="text-gray-400">or</span>
-                <div className="h-px bg-gray-800 flex-grow"></div>
-              </div>
-
-              <button
-                className="w-full bg-transparent border border-gray-700 rounded-full py-3 text-white"
-                onClick={() => setShowEmailForm(true)}
-              >
-                Continue with email
-              </button>
-
-              <div className="flex items-center gap-3">
-                <div className="h-px bg-gray-800 flex-grow"></div>
-                <span className="text-gray-400">or SAML</span>
+                <span className="text-gray-400">Tech Wave</span>
                 <div className="h-px bg-gray-800 flex-grow"></div>
               </div>
             </div>
           </>
-        ) : (
-          <div className="max-w-md">
-            <button
-              onClick={() => setShowEmailForm(false)}
-              className="flex items-center text-gray-400 mb-6 hover:text-white transition-colors"
-            >
-              <ArrowLeft size={16} className="mr-2" />
-              Back
-            </button>
-
-            <h1 className="text-3xl font-medium mb-6">Create your account</h1>
-
-            <form className="space-y-4">
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="john.doe@example.com"
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-300">
-                  Username
-                </label>
-                <div className="flex">
-                  <input
-                    type="text"
-                    id="username"
-                    placeholder="johndoe"
-                    className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
-                  required
-                />
-              </div>
-
-              <button type="submit" className="w-full bg-white text-black font-medium rounded-xl py-2.5 mt-6">
-                Create Account
-              </button>
-            </form>
-            <div className="flex items-center justify-center flex-col pt-5">
-              <p className="text-gray-500 text-xs  text-center mt-4">Already have an account?{" "}
-                <Link href="/login" className="text-gray-400 hover:text-white underline">
-                  Sign in
-                </Link>
-              </p>
-            <p className="text-xs text-gray-500 text-center mt-4">
-                    By creating an account, you agree to our{" "}
-                    <Link href="#" className="text-gray-400 hover:text-white underline">
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link href="#" className="text-gray-400 hover:text-white underline">
-                      Privacy Policy
-                    </Link>
-            </p>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Right Column - E-commerce Preview */}
@@ -180,8 +86,8 @@ export default function Signup() {
             {/* Product Header */}
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=300&width=500"
-                alt="Premium Jacket"
+                src="/store.jpg"
+                alt="Website logo"
                 width={500}
                 height={300}
                 className="w-full h-64 object-cover"

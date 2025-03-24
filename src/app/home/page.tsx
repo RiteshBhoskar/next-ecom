@@ -1,31 +1,40 @@
-'use client'
-import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { redirect } from "next/navigation";
-import { useState } from "react"
-import { api } from "~/trpc/react"
+import Signout from "~/components/Signout";
+import { auth } from "~/server/auth";
 
-
-export default function Home(){
-
-    const [name , setName ] = useState("");
-    const { data : session } = useSession();
-    if(!session){
+export default async function Home() {
+    const session = await auth();
+    if (!session) {
         redirect("/");
     }
-    const { data , refetch } = api.user.welcome.useQuery();
 
     return (
         <div>
-            <div>
-                enter your name
-            </div>
-            <input onChange={(e) => setName(e.target.value)} type="text" placeholder="your-name" value={name} />
-            <button onClick={() => refetch()}>submit</button>
-            { data && (
-                <div>
-                    {data.welcome}
+            hi {session.user.name}
+            {session.user.image ? (
+                <Image src={session.user.image} alt="user image" width={100} height={100} />
+            ) : (
+                <div
+                    style={{
+                        width: "100px",
+                        height: "100px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor: "#ccc",
+                        borderRadius: "50%",
+                        fontSize: "36px",
+                        fontWeight: "bold",
+                        color: "#fff",
+                    }}
+                >
+                    {(session.user.name ?? "").charAt(0).toUpperCase()}
                 </div>
             )}
+            <div>
+                <Signout />
+            </div>
         </div>
-    )
+    );
 }

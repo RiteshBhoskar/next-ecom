@@ -1,8 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
-import  GoogleProvider from "next-auth/providers/google";
-import  CredentialsProvider from "next-auth/providers/credentials";
-
+import Google from "next-auth/providers/google";
 import { db } from "~/server/db";
 
 declare module "next-auth" {
@@ -20,17 +18,7 @@ export const authConfig = {
   adapter: PrismaAdapter(db),
   session: { strategy: "database" },
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-    CredentialsProvider({
-      name: "Email and Password",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-    }),
+    Google
   ],
   callbacks: {
     session: ({ session, user }) => ({
