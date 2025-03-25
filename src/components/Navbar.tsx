@@ -1,9 +1,13 @@
 "use client";
 
+import { ShoppingCart } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import DropdownMenuNav from "./DropdownMenu";
 
 const Navbar = () => {
+  const {data: session , status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -37,9 +41,16 @@ const Navbar = () => {
           </button>
         </div>
 
-        <Link href="/signin" className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
+        {status === "loading" ? null : status === "authenticated" ? (
+          <div className="flex justify-between items-center space-x-4">
+            <ShoppingCart />
+            <DropdownMenuNav />
+          </div>
+        ) : (
+          <Link href="/signin" className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
             Get Started
-        </Link>
+          </Link>
+        )}
 
         {/* Mobile Menu Button */}
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
