@@ -2,8 +2,13 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../../trp
 
 
 export const orderRouter = createTRPCRouter({
-    order: protectedProcedure
+    getAllOrders: protectedProcedure
         .query(async ({ ctx }) => {
-            
+            const orders = await ctx.db.order.findMany({
+                where: {
+                    userId: ctx.session.user.id
+                }
+            })
+            return orders;
         })
 })
