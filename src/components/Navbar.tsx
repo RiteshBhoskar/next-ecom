@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import DropdownMenuNav from "./DropdownMenu";
+import { ShimmerButton } from "./magicui/shimmer-button";
+import Image from "next/image";
 
 const Navbar = () => {
   const {data: session , status } = useSession();
@@ -18,10 +20,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="top-0 w-full my-2 bg-white">
+    <nav className="sticky top-0 w-full my-2 bg-white">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="text-2xl font-medium flex justify-center items-center">
-        <img src="/logo.svg" className="hover:scale-110 transition-transform" alt="Webpage logo" width={40} height={40} />
+        <Image priority src="/logo.svg" className="hover:scale-110 transition-transform" alt="Webpage logo" width={40} height={40} />
             Tech Wave
         </Link>
 
@@ -47,9 +49,13 @@ const Navbar = () => {
             <DropdownMenuNav />
           </div>
         ) : (
-          <Link href="/signin" className="border-2 rounded-full border-gray-200 px-4 py-1 hover:text-blue-500">
+          <Link href="/signin">
+          <ShimmerButton className="shadow-2xl">
+          <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg -my-1">
             Get Started
-          </Link>
+          </span>
+        </ShimmerButton>
+        </Link>
         )}
 
         {/* Mobile Menu Button */}

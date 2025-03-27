@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useSession } from "next-auth/react";
 import { LogOut } from "lucide-react";
+import Image from "next/image";
 
 export default function DropdownMenuNav(){
     const { data : session } =  useSession();
@@ -10,8 +11,18 @@ export default function DropdownMenuNav(){
         <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar>
-                  <AvatarImage src={session?.user.image ?? undefined} />
-                  <AvatarFallback>{session?.user.name?.[0] ?? "U"}</AvatarFallback>
+                {session?.user.image ? (
+                    <Image
+                      src={session.user.image}
+                      alt="User Avatar"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                      priority
+                    />
+                  ) : (
+                    <AvatarFallback className="rounded-full bg-slate-200">{session?.user.name?.[0] ?? "U"}</AvatarFallback>
+                  )}
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
