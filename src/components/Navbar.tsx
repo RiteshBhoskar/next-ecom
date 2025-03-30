@@ -35,7 +35,7 @@ const Navbar = () => {
                   Category
                   </Link>
                   <button onClick={() => scrollToSection("shop")} className="hover:text-blue-500">
-                    Shop
+                    Your Orders
                   </button>
                   <button onClick={() => scrollToSection("about")} className="hover:text-blue-500">
                     About

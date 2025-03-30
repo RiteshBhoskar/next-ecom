@@ -6,6 +6,7 @@ import { auth } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { HeroCarousel } from "../../components/HeroCarousel";
 import { ShopByCategory } from "~/components/ShopByCategory";
+import { TodaysDeals } from "~/components/Today'sDeals";
 
 export default async function Home() {
     const session = await auth();
@@ -19,6 +20,7 @@ export default async function Home() {
         <div>
             <HeroCarousel />
             <ShopByCategory />
+            <TodaysDeals deals={products}  />
             hi {session.user.name}
             {session.user.image ? (
                 <Image src={session.user.image} alt="user image" width={100} height={100} />
