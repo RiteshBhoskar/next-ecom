@@ -12,9 +12,9 @@ const categories = [
 
 export function ShopByCategory() {
   return (
-    <section className="container py-8 w-full items-center justify-center">
+    <section className="py-8 w-full items-center justify-center">
       <h2 className="mb-6 text-4xl text-center">Shop by Category</h2>
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 px-2">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 px-2 w-full items-center justify-center">
         {categories.map((category) => (
           <Link
             key={category.name}

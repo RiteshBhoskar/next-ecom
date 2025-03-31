@@ -18,7 +18,7 @@ interface DealsSectionProps {
 
 export function TodaysDeals({ deals }: DealsSectionProps) {
   return (
-    <section className="container py-8 px-2 w-full">
+    <section className="py-8 px-2 w-full">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">Today's Deals</h2>
         <Link href="#" className="flex items-center text-sm text-primary hover:underline">
