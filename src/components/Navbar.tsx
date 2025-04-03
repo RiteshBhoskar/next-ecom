@@ -7,10 +7,12 @@ import { useState } from "react";
 import DropdownMenuNav from "./DropdownMenu";
 import { ShimmerButton } from "./magicui/shimmer-button";
 import Image from "next/image";
+import { useCart } from "~/hooks/useCart";
 
 const Navbar = () => {
   const {data: session , status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { items } = useCart();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -35,7 +37,7 @@ const Navbar = () => {
                   Category
                   </Link>
                   <button onClick={() => scrollToSection("shop")} className="hover:text-blue-500">
-                    Your Orders
+                    Your orders
                   </button>
                   <button onClick={() => scrollToSection("about")} className="hover:text-blue-500">
                     About
@@ -62,8 +64,15 @@ const Navbar = () => {
         )}
 
         {status === "loading" ? null : status === "authenticated" ? (
-          <div className="flex justify-between items-center space-x-4">
+          <div className="flex justify-between items-center space-x-7">
+            <Link  href="/home/cart" className="relative cursor-pointer">
             <ShoppingCart />
+              {items.length > 0 && (
+                <div className="absolute -top-3 -right-4 w-5 h-5 bg-[#F35C7A] rounded-full text-white text-xs flex items-center justify-center">
+                  {items.reduce((count, item) => count + item.quantity, 0)}
+                </div>
+              )}
+            </Link>
             <DropdownMenuNav />
           </div>
         ) : (

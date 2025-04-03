@@ -25,9 +25,8 @@ export function ShopByCategory() {
               <Image
                 src={category.image}
                 alt={category.name}
-                layout="fill"
-                objectFit="cover"
-                className="transition-transform group-hover:scale-110"
+                fill
+                className="transition-transform object-cover group-hover:scale-110"
               />
             </div>
             <div className="p-3 text-center">

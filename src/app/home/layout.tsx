@@ -1,3 +1,5 @@
+
+import { Footer } from "~/components/Footer";
 import Navbar from "~/components/Navbar";
 
 interface DashboardChildrenType {
@@ -10,6 +12,7 @@ export default function({children}: DashboardChildrenType){
         <div>
         <Navbar />
         {children}
+        <Footer />
         </div>
     )
 }

@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { Card, CardContent } from "./ui/card"
-import { Button } from "./ui/button"
+import { AddToCartButton } from "./AddToCartButton"
 
 interface Deal {
   id: number
@@ -28,27 +28,27 @@ export function TodaysDeals({ deals }: DealsSectionProps) {
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {deals.map((deal) => (
-          <Card key={deal.id} className="overflow-hidden">
+          <Card key={deal.id} className="overflow-hidden grid grid-rows-[auto_1fr_auto] h-full">
             <div className="relative aspect-square">
               <Image
-                src={deal.imageUrl || "/placeholder.svg"}
+                src={deal.imageUrl}
                 alt={deal.name}
                 fill
                 className="object-cover transition-transform hover:scale-105"
               />
             </div>
-            <CardContent className="p-3">
-              <h3 className="line-clamp-2 text-sm font-medium">{deal.name}</h3>
+            <CardContent className="p-3 flex flex-col">
+              <h3 className="line-clamp-2">{deal.name}</h3>
               <div className="mt-2 flex items-center gap-2">
-                <span className="font-bold">${deal.price.toFixed(2)}</span>
+                <span className="font-medium">${deal.price.toFixed(2)}</span>
               </div>
-              <Button className="mt-2 w-full text-xs" size="sm">
-                Add to Cart
-              </Button>
             </CardContent>
+            <div className="px-3 pb-3">
+              <AddToCartButton id={deal.id.toString()} name={deal.name} price={deal.price} imageUrl={deal.imageUrl} />
+            </div>
           </Card>
         ))}
-      </div>
+      </div> 
     </section>
   )
 }
