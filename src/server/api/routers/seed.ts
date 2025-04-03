@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 
 
-export const seedRouter = createTRPCRouter({
+export const productRouter = createTRPCRouter({
     seedDb: protectedProcedure
         .mutation(async ({ ctx }) => {
             await Promise.all(

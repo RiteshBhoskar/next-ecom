@@ -33,12 +33,12 @@ const Navbar = () => {
         {/* Desktop Links */}
         {status === "loading" ? null: status === "authenticated" ? (
                   <div className="hidden md:flex gap-6">
-                  <Link href="/categories" className="hover:text-blue-500">
+                  <button onClick={() => scrollToSection("category")} className="hover:text-blue-500">
                   Category
-                  </Link>
-                  <button onClick={() => scrollToSection("shop")} className="hover:text-blue-500">
-                    Your orders
                   </button>
+                  <Link href="/home/orders" className="hover:text-blue-500">
+                    Your orders
+                  </Link>
                   <button onClick={() => scrollToSection("about")} className="hover:text-blue-500">
                     About
                   </button>
@@ -62,7 +62,7 @@ const Navbar = () => {
           </button>
         </div>
         )}
-
+        <div className="flex items-center gap-3 md:gap-6">
         {status === "loading" ? null : status === "authenticated" ? (
           <div className="flex justify-between items-center space-x-7">
             <Link  href="/home/cart" className="relative cursor-pointer">
@@ -89,16 +89,27 @@ const Navbar = () => {
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           ☰
         </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden flex flex-col items-center gap-4 bg-white py-4 shadow-md">
+      <div className="md:hidden flex flex-col items-center gap-4 bg-white py-4 shadow-md">
+      {status === "authenticated" ? (
+        <>
+          <button onClick={() => scrollToSection("category")}>Category</button>
+          <Link href="/home/orders">Your Orders</Link>
+          <button onClick={() => scrollToSection("about")}>About</button>
+          <button onClick={() => scrollToSection("contact")}>Contact</button>
+        </>
+      ) : (
+        <>
           <button onClick={() => scrollToSection("home")}>Home</button>
           <button onClick={() => scrollToSection("shop")}>Shop</button>
           <button onClick={() => scrollToSection("about")}>About</button>
           <button onClick={() => scrollToSection("contact")}>Contact</button>
-        </div>
+        </>
+      )}
+      </div>
       )}
     </nav>
   );

@@ -14,7 +14,7 @@ export default async function Home() {
         redirect("/");
     }
 
-    const products = await api.seed.getProducts();
+    const products = await api.product.getProducts();
 
     return (
         <div>
