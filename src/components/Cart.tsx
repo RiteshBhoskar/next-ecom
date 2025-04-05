@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
 export default function Cart() {
-    const { items, getTotal, removeItem, addItem, updateQuantity, clearCart } = useCart();
+    const { items, getTotal, removeItem, updateQuantity, clearCart } = useCart();
     const router = useRouter();
 
     return (

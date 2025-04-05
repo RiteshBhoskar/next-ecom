@@ -1,9 +1,15 @@
+import { api } from "~/trpc/server"
 
 
-export default function Orders(){
+export default async function Orders(){
+    const orders = await api.order.getAllOrders();
     return (
         <div>
-            you orders
+            {orders.map((order) => (
+                <div>
+                    {order.id}
+                </div>
+            ))}
         </div>
     )
 }

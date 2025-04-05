@@ -28,13 +28,14 @@ export function TodaysDeals({ deals }: DealsSectionProps) {
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {deals.map((deal) => (
-          <Card key={deal.id} className="overflow-hidden grid grid-rows-[auto_1fr_auto] h-full">
+          <Card key={deal.id} className="flex flex-col justify-between h-full overflow-hidden">
+            <Link href="/home/product/[id]" as={`/home/product/${deal.id}`}>
             <div className="relative aspect-square">
               <Image
                 src={deal.imageUrl}
                 alt={deal.name}
                 fill
-                className="object-cover transition-transform hover:scale-105"
+                className="object-cover transition-transform hover:scale-105 rounded-xl"
               />
             </div>
             <CardContent className="p-3 flex flex-col">
@@ -43,6 +44,7 @@ export function TodaysDeals({ deals }: DealsSectionProps) {
                 <span className="font-medium">${deal.price.toFixed(2)}</span>
               </div>
             </CardContent>
+            </Link>
             <div className="px-3 pb-3">
               <AddToCartButton id={deal.id.toString()} name={deal.name} price={deal.price} imageUrl={deal.imageUrl} />
             </div>
