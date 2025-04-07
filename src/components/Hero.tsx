@@ -1,19 +1,19 @@
+import { BlurFade } from "./magicui/blur-fade"
 
 export default function HeroSection() {
     return (
         <div className="flex flex-col h-full w-full justify-center items-center">
-            <div className="text-5xl flex-wrap">
+            <BlurFade inView delay={0.5} duration={0.5} className="text-5xl flex-wrap">
                 Elevate your lifstyle with premium essentials.
-            </div>
+            </BlurFade>
             <div className="flex justify-between w-full">
-                <div>
+                <BlurFade inView delay={0.25}>
                 Elevate your daily routine with our meticulously selected premium goods and curated essentials.
-                </div>
-                <div>
-                    <button>
-                        Shop Now
-                    </button>
-                </div>
+                </BlurFade>
+            </div>
+            <div className="flex h-fit w-full justify-center items-center mt-10">
+            <img className="-left-36 relative" src="watch1.avif" alt="watch image" />
+            <img className="-right-36 rounded-xl relative" src="watch2.avif" height="350" width="350" alt="watch image" />
             </div>
         </div>
     )

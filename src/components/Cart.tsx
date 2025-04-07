@@ -81,7 +81,7 @@ export default function Cart() {
       ) : (
         <div className="flex flex-col items-center justify-center py-20">
           <h2 className="text-xl font-semibold text-gray-600 mb-4">Your cart is currently empty.</h2>
-          <Button onClick={() => router.push("/")} variant="outline">
+          <Button onClick={() => router.push("/home")} variant="outline">
             Continue Shopping
           </Button>
         </div>

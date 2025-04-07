@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useCart } from "~/hooks/useCart";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
-import { loadStripe } from "@stripe/stripe-js";
 import { api } from "~/trpc/react";
 import Image from "next/image";
 
@@ -16,11 +15,10 @@ interface AddressInput {
   zip: string;
 }
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_TEST_KEY!);
-
 export default function CheckoutPage() {
-  const { items, getTotal } = useCart();
+  const { items, getTotal , clearCart } = useCart();
   const router = useRouter();
+  const [orderStatusMessage, setOrderStatusMessage] = useState<string | null>(null);
   const [newAddress, setNewAddress] = useState<AddressInput>({
     address: "",
     city: "",
@@ -29,7 +27,7 @@ export default function CheckoutPage() {
     zip: "",
   });
   const [paymentProcessing, setPaymentProcessing] = useState(false);
-  const createPaymentIntentMutation = api.order.createPaymentIntent.useMutation();
+  const createOrderWithoutPaymentMutation = api.order.createOrderWithoutPayment.useMutation();
 
   const handleNewAddressInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,38 +36,28 @@ export default function CheckoutPage() {
 
   const handleCheckout = async () => {
     setPaymentProcessing(true);
-    const stripe = await stripePromise;
     const cartItemsToSend = items.map(item => ({ productId: parseInt(item.id), quantity: item.quantity}))
 
-    if (!stripe) {
-      console.error("Stripe failed to load.");
-      setPaymentProcessing(false);
-      return;
-    }
 
     try {
-      const totalAmount = getTotal() * 100;
-      const paymentIntentResult = await createPaymentIntentMutation.mutateAsync({
-        amount: totalAmount,
+      const orderResults = await createOrderWithoutPaymentMutation.mutateAsync({
         newAddress,
         cartItems: cartItemsToSend,
       });
 
-      if (paymentIntentResult?.sessionId) {
-        const result = await stripe.redirectToCheckout({
-          sessionId: paymentIntentResult.sessionId,
-        });
-
-        if (result.error) {
-          console.error(result.error.message);
-          setPaymentProcessing(false);
-        }
-      } else {
-        console.error("Failed to get client secret from tRPC mutation.");
+      if(orderResults.id){
+        clearCart();
+        setOrderStatusMessage("Order placed successfully!")
         setPaymentProcessing(false);
-      }
+        router.push("/home/orders")
+      } else {
+        console.error("Failed to create order.");
+        setOrderStatusMessage("Failed to place order. Please try again.")
+        setPaymentProcessing(false);
+    }
     } catch (error: any) {
       console.error("Error initiating checkout:", error);
+      setOrderStatusMessage("Failed to place order. Please try again.")
       setPaymentProcessing(false);
     }
   };
@@ -80,7 +68,11 @@ export default function CheckoutPage() {
         Back to Cart
       </Button>
       <h1 className="text-2xl font-bold mb-6">Checkout</h1>
-
+      {orderStatusMessage && (
+            <div className={`mb-4 p-4 rounded-md ${orderStatusMessage.startsWith("Order placed") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                {orderStatusMessage}
+            </div>
+        )}
       {items.length === 0 ? (
         <p>Your cart is empty. Please add items before checking out.</p>
       ) : (
@@ -109,7 +101,7 @@ export default function CheckoutPage() {
                 <input type="text" id="country" name="country" value={newAddress.country} onChange={handleNewAddressInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
               </div>
               <Button onClick={handleCheckout} className="w-full mt-4 rounded text-white bg-black hover:text-white hover:bg-black" disabled={paymentProcessing}>
-                {paymentProcessing ? "Processing Payment..." : "Proceed to Payment"}
+                {paymentProcessing ? "Processing Order..." : "Confirm Order"}
               </Button>
             </form>
           </div>

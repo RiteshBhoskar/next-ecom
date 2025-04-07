@@ -19,50 +19,13 @@ export default async function Home() {
     return (
         <div>
             <HeroCarousel />
+            <div className="my-6 text-center">
+                <h1 className="text-3xl">Welcome, {session.user.name}!</h1>
+                <p className="mt-2 text-gray-500">Explore our simulated shopping experience, including product Browse, a shopping cart, and a dummy checkout process.</p>
+            </div>
             <ShopByCategory />
             <TodaysDeals deals={products}  />
-            hi {session.user.name}
-            {session.user.image ? (
-                <Image src={session.user.image} alt="user image" width={100} height={100} />
-            ) : (
-                <div
-                    style={{
-                        width: "100px",
-                        height: "100px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        backgroundColor: "#ccc",
-                        borderRadius: "50%",
-                        fontSize: "36px",
-                        fontWeight: "bold",
-                        color: "#fff",
-                    }}
-                >
-                    {(session.user.name ?? "").charAt(0).toUpperCase()}
-                </div>
-            )}
-
-            <div>
-                <h2>OUr Products</h2>
-                {products.map((product) => (
-                    <div key={product.id}>
-                    <img src={product.imageUrl} alt="product url" />
-                    <p>
-                        {product.name}
-                    </p>
-                    <p>
-                        {product.description}
-                    </p>
-                    <p>{product.price}</p>
-                    </div>
-                ) )}
-            </div>
-
-            <div>
-                <Signout />
-            </div>
-            <SeedDb />
+            {process.env.NODE_ENV === 'development' && <SeedDb />}
         </div>
     );
 }
