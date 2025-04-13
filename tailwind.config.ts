@@ -105,7 +105,7 @@ const config: Config = {
 		medium: '500',
 		bold: '700'
 	},
-  plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")],
 } satisfies Config;
 
 

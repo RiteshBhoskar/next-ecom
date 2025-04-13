@@ -840,3 +840,42 @@ export const products = [
         type: "supplements",
     },
 ];
+
+export const productData = [
+    {
+      id: 1,
+      name: "Minimal Watch",
+      description:
+        "Elevate your style with the sophisticated Lryx Watch, a perfect blend of elegance and functionality",
+      price: "349.99",
+      category: "GEAR",
+      image: "minimal-watch.avif",
+    },
+    {
+        id: 2,
+      name: "Watch Screen Protector",
+      description:
+        "Stay connected and monitor your fitness effortlessly with the Watch SE 3, your essential companion for an active lifestyle",
+      price: "349.99",
+      category: "GEAR",
+      image: "screen-protector.avif",
+    },
+    {
+        id: 3,
+      name: "Hash ANC Headphone",
+      description:
+        "Experience deep, powerful bass and crystal-clear audio with the Headphone 21 Bass, perfect for music enthusiasts",
+      price: "499.99",
+      category: "GEAR",
+      image: "headphones.avif",
+    },
+    {
+        id: 4,
+      name: "Buds 2 Wireless",
+      description:
+        "Immerse yourself in premium sound quality and enjoy the ultimate listening experience with our top-notch earbuds",
+      price: "389.99",
+      category: "GEAR",
+      image: "airbuds.avif",
+    },
+  ];

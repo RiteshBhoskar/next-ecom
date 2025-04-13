@@ -3,7 +3,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DropdownMenuNav from "./DropdownMenu";
 import { ShimmerButton } from "./magicui/shimmer-button";
 import Image from "next/image";
@@ -13,6 +13,27 @@ const Navbar = () => {
   const {data: session , status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items } = useCart();
+  const [showNavbar , setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if(currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  } , [])
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -23,7 +44,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 w-full z-50 my-2 bg-white">
+    <nav className={`sticky top-0 w-full z-50 my-2 bg-white transition-transform duration-300 ${
+      showNavbar ? "translate-y-0" : "-translate-y-full"
+    }`}>
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="text-2xl font-medium flex justify-center items-center">
         <Image priority src="/logo.svg" className="hover:scale-125 transition-transform" alt="Webpage logo" width={40} height={40} />
