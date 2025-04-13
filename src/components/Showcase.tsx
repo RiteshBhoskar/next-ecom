@@ -7,7 +7,7 @@ import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-export default function Section3() {
+export default function ShowCase() {
   const container = useRef<HTMLElement | null>(null);
 
   useGSAP(
@@ -26,7 +26,6 @@ export default function Section3() {
           scrollTrigger: {
             trigger: container.current,
             start: "top 60%",
-            scrub: 1,
             toggleActions: "play none play reverse",
           },
         }

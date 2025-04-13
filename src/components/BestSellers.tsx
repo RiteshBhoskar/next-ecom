@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
   
 
-export default function Section4() {
+export default function BestSellers() {
     const sectionRef = useRef(null);
     useGSAP(() => {
         gsap.fromTo(".image-container", {
@@ -29,13 +29,13 @@ export default function Section4() {
     },{ scope: sectionRef })
 
     return (
-        <div ref={sectionRef} className="h-full main-container z-40 bg-white relative w-full flex-col overflow-clip justify-center items-center p-7 rounded-[60px] ">
-            <div className="pl-4 text-4xl w-full flex justify-center font-medium pb-7">
+        <div ref={sectionRef} className="h-full main-container z-40 bg-white relative w-full flex-col overflow-clip justify-center items-center p-7 px-8 sm:px-14 rounded-[60px] ">
+            <div className="sm:pl-4 text-4xl w-full flex justify-center font-medium py-2 ">
                 Bestsellers
             </div>
-            <div className="flex flex-col h-full sm:flex-row">
+            <div className="flex flex-col pt-7 h-full sm:flex-row space-y-7 sm:space-y-0">
                 {productData.map((product) => (
-                    <div key={product.id} className="w-full flex-col mx-4 h-fit overflow-clip image-container transition-all duration-300 ease-in-out hover:scale-[1.02] cursor-pointer">
+                    <div key={product.id} className="w-full flex-col sm:mx-4 h-fit overflow-clip image-container transition-all duration-300 ease-in-out hover:scale-[1.02] cursor-pointer">
                     <div className="relative w-full h-[350px]">
                         <p className="absolute top-5 left-5 px-4 py-2 bg-white text-gray-600 text-xs rounded-full shadow-md">
                             {product.category}

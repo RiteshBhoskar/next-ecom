@@ -1,3 +1,48 @@
+import { CreditCard, SendToBack, Truck } from "lucide-react"
+
+
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react"
+
+export const sociaMedia = [
+    {
+        id: 1,
+        icon: Twitter,
+    },
+    {
+        id: 2,
+        icon: Instagram,
+    },
+    {
+        id: 3,
+        icon: Facebook,
+    },
+    {
+        id: 4,
+        icon: Linkedin,
+    },
+]
+
+export const shippingData = [
+    {
+        id: 1,
+        header: "Free Shipping",
+        subHeader: "Over $29.00",
+        icon: Truck,
+    },
+    {
+        id: 2,
+        header: "Secure Payments",
+        subHeader: "With 5+ Payment options",
+        icon: CreditCard,
+    },
+    {
+        id: 3,
+        header: "30 Days free return",
+        subHeader: "No questions asked",
+        icon: SendToBack,
+    },
+]
+
 export const products = [
     {
         name: "Apple iPhone 16 Pro Max",

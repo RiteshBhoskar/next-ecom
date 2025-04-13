@@ -2,10 +2,12 @@ import { redirect } from "next/navigation";
 import HeroSection from "~/components/Hero";
 import Navbar from "~/components/Navbar";
 import Products from "~/components/Products";
-import Section3 from "~/components/Section3";
-import Section4 from "~/components/Section4";
-import Section5 from "~/components/Section5";
 import { auth } from "~/server/auth";
+import ShowCase from "~/components/Showcase";
+import BestSellers from "~/components/BestSellers";
+import Features from "~/components/Features";
+import Shipping from "~/components/Shipping";
+import LandingFooter from "~/components/LandingFooter";
 
 export default async function Home() {
   const session = await auth();
@@ -19,9 +21,11 @@ export default async function Home() {
       <Navbar />
       <HeroSection />
       <Products />
-      <Section3 />
-      <Section4 />
-      <Section5 />
+      <ShowCase />
+      <BestSellers />
+      <Features />
+      <Shipping />
+      <LandingFooter />
     </main>
   )
 }
