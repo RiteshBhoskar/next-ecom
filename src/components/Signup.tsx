@@ -36,7 +36,6 @@ export default function Signup() {
       {/* Right Column - E-commerce Preview */}
       <div className="hidden lg:block w-1/2 bg-zinc-900 p-8 rounded-2xl h-fit">
         <div className="max-w-lg mx-auto">
-          {/* Award Badges */}
           <div className="flex justify-between mb-12 ">
             <div className="text-center items-center flex flex-col justify-center space-y-2">
               <div className="text-xs text-gray-400">Best Online Store</div>

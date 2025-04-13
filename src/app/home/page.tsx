@@ -1,7 +1,5 @@
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import SeedDb from "~/components/SeedDb";
-import Signout from "~/components/Signout";
 import { auth } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { HeroCarousel } from "../../components/HeroCarousel";

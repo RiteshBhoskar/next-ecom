@@ -55,7 +55,7 @@ export default function CheckoutPage() {
         setOrderStatusMessage("Failed to place order. Please try again.")
         setPaymentProcessing(false);
     }
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error initiating checkout:", error);
       setOrderStatusMessage("Failed to place order. Please try again.")
       setPaymentProcessing(false);

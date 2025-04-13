@@ -3,11 +3,11 @@
 import { api } from "~/trpc/react"
 
 export default function SeedDb(){
-    const res =  api.seed.seedDb.useMutation({
-        onSuccess(data, variables, context) {
+    const res =  api.product.seedDb.useMutation({
+        onSuccess(data) {
             alert(data.message)
         },
-        onError(error, variables, context) {
+        onError(error) {
             alert(error.message)
         },
     });

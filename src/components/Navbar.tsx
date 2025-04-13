@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useCart } from "~/hooks/useCart";
 
 const Navbar = () => {
-  const {data: session , status } = useSession();
+  const { status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items } = useCart();
   const [showNavbar , setShowNavbar] = useState(true);

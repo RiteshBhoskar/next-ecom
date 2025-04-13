@@ -1,6 +1,6 @@
 import type React from "react";
 import Link from "next/link";
-import { ShoppingCart, Facebook, Twitter, Instagram, Youtube, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 export function Footer() {
@@ -9,8 +9,7 @@ export function Footer() {
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
-
-            {/* Main footer links */}
+            
             <div className="border-t border-border py-12 md:py-16">
                 <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
                     <div>
