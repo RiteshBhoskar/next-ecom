@@ -61,7 +61,7 @@ export default function Shipping() {
                     </p>
                     <div className="w-full pb-7 sm:pb-0 flex justify-between gap-4">
                         <input type="text" className="bg-white py-4 rounded-full w-9/12 pl-4 " placeholder="Email Address" />
-                        <button className="w-4/12 rounded-full bg-black text-white ">
+                        <button className="w-4/12 rounded-full bg-black text-sm sm:text-base text-white ">
                             Subscribe
                         </button>
                     </div>

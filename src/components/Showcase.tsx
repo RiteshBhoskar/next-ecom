@@ -44,7 +44,7 @@ export default function ShowCase() {
   return (
     <section
       ref={container}
-      className="h-screen w-full main-container flex justify-center items-center py-7 px-8 sm:px-14"
+      className="h-screen w-full main-container flex justify-center items-center py-7 px-4 sm:px-14"
     >
       <div className="flex rounded-[60px] animated-content w-full h-full justify-between overflow-clip bg-white">
         <div className="w-full sm:w-1/2 flex flex-col items-center sm:items-start px-4 sm:pl-10 h-full text-center sm:text-start justify-center bg-black gap-7">

@@ -25,7 +25,7 @@ export default function LandingFooter() {
                     <h4 className="text-white text-4xl">
                         Menu
                     </h4>
-                    <div className="flex items-start flex-row sm:flex-col gap-4 text-gray-400 justify-start">
+                    <div className="flex items-start flex-row sm:flex-col gap-2 sm:gap-4 text-gray-400 justify-start">
                         <div>Home</div>
                         <div>Store</div>
                         <div>About</div>
@@ -59,7 +59,7 @@ export default function LandingFooter() {
                 </div>
             </div>
             <div className="w-full h-px bg-gray-300 mt-5" />
-            <div className="flex justify-between w-full py-4 pl-14">
+            <div className="flex justify-between items-center w-full py-4 pl-7 sm:pl-14">
                 <p className="text-lg text-gray-400">Copyright © Tech Wave</p>
                 <div className="flex size-10 w-fit gap-3 pr-4">
                     <img src="visa.png" alt="visa" />

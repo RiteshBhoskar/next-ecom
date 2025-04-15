@@ -27,7 +27,7 @@ export default function Features() {
     }, { scope: sectionRef })
 
     return (
-        <section ref={sectionRef} className="h-screen w-full mt-12 p-7 px-8 sm:px-14 overflow-clip">
+        <section ref={sectionRef} className="h-full sm:h-screen w-full mt-12 p-7 px-8 sm:px-14 overflow-clip">
             <div className="flex flex-col h-full sm:flex-row w-full sm:space-x-11 space-y-7 sm:space-y-0">
                 <div className="w-full overflow-clip items-center justify-center flex h-full rounded-[60px] sm:w-2/3 containers">
                     <img src="laptopinabag.avif" alt="laptop image" className="scale-150" />

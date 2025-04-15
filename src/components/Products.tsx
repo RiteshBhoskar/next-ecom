@@ -79,7 +79,7 @@ export default function Products(){
       });
       
     return (
-        <section className="flex section flex-col h-full w-full justify-center items-center overflow-clip mt-20 sm:mt-60 px-8 sm:px-14 space-y-7">
+        <section className="flex section flex-col h-full w-full justify-center items-center overflow-clip mt-20 sm:mt-60 px-4 sm:px-14 space-y-7">
             <div className="flex flex-col sm:flex-row w-full gap-6">
                 <div className="w-full sm:w-2/3 rounded-[60px] first-container h-[425px] flex justify-between overflow-clip">
                    <div className="h-full w-full flex flex-col items-center justify-center bg-[#f9f9f9] pt-16">
